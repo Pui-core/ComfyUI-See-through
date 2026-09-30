@@ -59,6 +59,7 @@ def _unique(parts, name):
 
 def partition(parts, source, masks, kind):
     """Extract nonoverlapping regions, retaining all rejected/remainder pixels."""
+    original_order = list(parts)
     parent = parts[source]
     available = parent["img"][..., 3] > 0
     for index, mask in enumerate(masks, 1):
@@ -75,6 +76,20 @@ def partition(parts, source, masks, kind):
         del parts[source]
     else:
         parts[source] = remainder
+    _restore_order(parts, original_order, source)
+
+
+def _restore_order(parts, original_order, source):
+    """Keep children adjacent to their source when depth values are tied."""
+    additions = [key for key in parts if key not in original_order]
+    ordered = {}
+    for key in original_order:
+        if key in parts:
+            ordered[key] = parts[key]
+        if key == source:
+            ordered.update((name, parts[name]) for name in additions)
+    parts.clear()
+    parts.update(ordered)
 
 
 def highlight_masks(img, minimum=3, contrast=0.10, brightness=0.72):
@@ -195,4 +210,5 @@ def extract_mask(data, source, name, mask, threshold=.5):
         del parts[source]
     else:
         parts[source] = remainder
+    _restore_order(parts, list(data["tag2pinfo"]), source)
     return output

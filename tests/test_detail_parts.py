@@ -91,6 +91,14 @@ class DetailTests(unittest.TestCase):
         img[10:100, 60:90] = [80, 60, 40, 255]
         self.assertGreaterEqual(len(hair_masks(img)), 2)
 
+    def test_equal_depth_layer_order(self):
+        data = fixture("face")
+        data["tag2pinfo"]["occluder"] = dict(data["tag2pinfo"]["face"])
+        mask = np.zeros(data["frame_size"], np.float32)
+        mask[30:44, 35:55] = 1
+        out = extract_mask(data, "face", "nose", mask)
+        self.assertEqual(list(out["tag2pinfo"]), ["face", "nose", "occluder"])
+
     def test_empty_and_disabled(self):
         self.assertEqual(refine_parts({"frame_size": (10, 10), "tag2pinfo": {}})["tag2pinfo"], {})
         data = fixture()
