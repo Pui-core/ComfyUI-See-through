@@ -36,7 +36,6 @@ class DetailTests(unittest.TestCase):
 
     def test_manual_offsets_alpha_and_input_unchanged(self):
         data = fixture("face")
-        original = data["tag2pinfo"]["face"]["img"].copy()
         data["tag2pinfo"]["face"]["img"][25, 30, 3] = 71
         original = data["tag2pinfo"]["face"]["img"].copy()
         mask = np.zeros(data["frame_size"], np.float32)
@@ -90,6 +89,17 @@ class DetailTests(unittest.TestCase):
         img[10:100, 10:35] = [80, 60, 40, 255]
         img[10:100, 60:90] = [80, 60, 40, 255]
         self.assertGreaterEqual(len(hair_masks(img)), 2)
+
+    def test_depth_background_is_masked(self):
+        data = fixture("face")
+        mask = np.zeros(data["frame_size"], np.float32)
+        mask[30:44, 35:38] = 1
+        mask[41:44, 35:55] = 1
+        out = extract_mask(data, "face", "nose", mask)
+        child = out["tag2pinfo"]["nose"]
+        self.assertTrue(np.any(child["img"][..., 3] == 0))
+        self.assertTrue(np.all(child["depth"][child["img"][..., 3] == 0] == 255))
+        self.assertTrue(np.all(child["depth"][child["img"][..., 3] > 0] == 103))
 
     def test_equal_depth_layer_order(self):
         data = fixture("face")

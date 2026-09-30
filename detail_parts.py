@@ -42,7 +42,11 @@ def _piece(parent, mask, tag, kind):
     ox, oy = parent.get("xyxy", [0, 0])[:2]
     result["xyxy"] = [int(ox + x0), int(oy + y0), int(ox + x1), int(oy + y1)]
     if parent.get("depth") is not None:
-        result["depth"] = parent["depth"][y0:y1, x0:x1].copy()
+        depth = parent["depth"][y0:y1, x0:x1].copy()
+        selected = mask[y0:y1, x0:x1] & (cropped[..., 3] > 0)
+        background = 255 if np.issubdtype(depth.dtype, np.integer) else 1.0
+        depth[~selected] = background
+        result["depth"] = depth
     result.pop("mask", None)
     result.update(tag=tag, detail_kind=kind)
     return result
