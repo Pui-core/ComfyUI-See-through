@@ -1,0 +1,436 @@
+{
+  "last_node_id": 10,
+  "last_link_id": 8,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "RevenantLoadSavedParts",
+      "title": "01 原画の *_layers.json",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        350,
+        220
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "part_names",
+          "type": "STRING",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantLoadSavedParts"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 2,
+      "type": "RevenantLoadSavedParts",
+      "title": "02 体下地の *_layers.json",
+      "pos": [
+        0,
+        460
+      ],
+      "size": [
+        350,
+        220
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "part_names",
+          "type": "STRING",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantLoadSavedParts"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 3,
+      "type": "RevenantMergeReport",
+      "title": "原画のパーツ名",
+      "pos": [
+        410,
+        0
+      ],
+      "size": [
+        440,
+        320
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 1
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "RevenantMergeReport"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 4,
+      "type": "RevenantMergeReport",
+      "title": "下地のパーツ名",
+      "pos": [
+        410,
+        460
+      ],
+      "size": [
+        440,
+        320
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "RevenantMergeReport"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 5,
+      "type": "RevenantMergeSavedParts",
+      "title": "03 指定パーツだけ下地へ置換・XY微調整",
+      "pos": [
+        920,
+        0
+      ],
+      "size": [
+        410,
+        400
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "original",
+          "type": "SEETHROUGH_PARTS",
+          "link": 3
+        },
+        {
+          "name": "underlay",
+          "type": "SEETHROUGH_PARTS",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "report",
+          "type": "STRING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantMergeSavedParts"
+      },
+      "widgets_values": [
+        "neck\ntopwear",
+        "",
+        0,
+        0
+      ]
+    },
+    {
+      "id": 6,
+      "type": "PreviewImage",
+      "title": "原画PSDの重ね合わせ",
+      "pos": [
+        920,
+        480
+      ],
+      "size": [
+        410,
+        520
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 7,
+      "type": "PreviewImage",
+      "title": "04 合成結果（灰色は確認背景）",
+      "pos": [
+        1390,
+        0
+      ],
+      "size": [
+        450,
+        650
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 8,
+      "type": "RevenantMergeReport",
+      "title": "合成レポート",
+      "pos": [
+        1390,
+        720
+      ],
+      "size": [
+        450,
+        320
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 7
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "RevenantMergeReport"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "SeeThrough_SavePSD",
+      "title": "05 保存後 Download PSD",
+      "pos": [
+        1900,
+        0
+      ],
+      "size": [
+        350,
+        220
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "revenant_merged",
+        "Download PSD",
+        "Download Depth PSD"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "Note",
+      "title": "使い方",
+      "pos": [
+        0,
+        -420
+      ],
+      "size": [
+        1220,
+        310
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "ComfyUI再起動後に開く。原画と下地のSavePSDが作った *_layers.json を01/02に入力。outputからの相対名、またはWindows絶対パス。PNGはJSONと同じフォルダに保持。PSDバイナリ直接入力ではありません。\n首neck・衣服topwearを置換する初期設定。検出名が異なる場合はレポート/エラーの名前に合わせる。replace_partsは1行1パーツ、remove_partsは不要な原画レイヤー名。\nXYは選択した下地パーツだけに適用。部位ごとに異なる調整が必要ならMergeノードを直列に追加する。入力キャンバス違いはエラーで停止。\nRun→結果確認→Download PSD。推論の再実行不要。合成は選択レイヤーの置換であり、自動位置合わせ・輪郭補修・下地の再生成ではありません。\n保存PNGはクロップ画像。座標保持にはPSDを使う。深度画像は読込対象外なのでDownload Depth PSDではなくDownload PSDを使用。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      2,
+      3,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      2,
+      2,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      3,
+      1,
+      0,
+      5,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      4,
+      2,
+      0,
+      5,
+      1,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      5,
+      1,
+      1,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      5,
+      1,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      5,
+      2,
+      8,
+      0,
+      "STRING"
+    ],
+    [
+      8,
+      5,
+      0,
+      9,
+      0,
+      "SEETHROUGH_PARTS"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.65,
+      "offset": [
+        80,
+        450
+      ]
+    }
+  },
+  "version": 0.4
+}
