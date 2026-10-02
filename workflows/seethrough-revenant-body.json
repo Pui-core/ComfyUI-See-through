@@ -1,0 +1,641 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 12,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "title": "01 装飾を除去した体の下地",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        340,
+        370
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "revenant_body.png",
+        "image"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "EmptyImage",
+      "title": "透過部分を白背景へ（入力サイズに合わせる）",
+      "pos": [
+        0,
+        430
+      ],
+      "size": [
+        340,
+        230
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyImage"
+      },
+      "widgets_values": [
+        1086,
+        1448,
+        1,
+        16777215
+      ]
+    },
+    {
+      "id": 3,
+      "type": "InvertMask",
+      "title": "LoadImageの透明マスクを可視領域に反転",
+      "pos": [
+        390,
+        350
+      ],
+      "size": [
+        340,
+        100
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 4,
+      "type": "ImageCompositeMasked",
+      "title": "白背景へ合成してモデルへ入力",
+      "pos": [
+        390,
+        0
+      ],
+      "size": [
+        340,
+        230
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "destination",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "source",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            5,
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageCompositeMasked"
+      },
+      "widgets_values": [
+        0,
+        0,
+        false
+      ]
+    },
+    {
+      "id": 5,
+      "type": "SeeThrough_LoadLayerDiffModel",
+      "title": "02 分割モデル（未導入時は自動取得）",
+      "pos": [
+        780,
+        430
+      ],
+      "size": [
+        370,
+        330
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "layerdiff_model",
+          "type": "SEETHROUGH_LAYERDIFF_MODEL",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_LoadLayerDiffModel"
+      },
+      "widgets_values": [
+        "layerdifforg/seethroughv0.0.2_layerdiff3d",
+        "",
+        "",
+        "none",
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": 6,
+      "type": "SeeThrough_GenerateLayers",
+      "title": "03 レイヤー推論 768 / 30steps / seed固定",
+      "pos": [
+        780,
+        0
+      ],
+      "size": [
+        340,
+        230
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 5
+        },
+        {
+          "name": "layerdiff_model",
+          "type": "SEETHROUGH_LAYERDIFF_MODEL",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "layers",
+          "type": "SEETHROUGH_LAYERS",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_GenerateLayers"
+      },
+      "widgets_values": [
+        246813579,
+        "fixed",
+        768,
+        30
+      ]
+    },
+    {
+      "id": 7,
+      "type": "SeeThrough_LoadDepthModel",
+      "title": "04 深度モデル（未導入時は自動取得）",
+      "pos": [
+        1190,
+        430
+      ],
+      "size": [
+        370,
+        290
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "depth_model",
+          "type": "SEETHROUGH_DEPTH_MODEL",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_LoadDepthModel"
+      },
+      "widgets_values": [
+        "layerdifforg/seethroughv0.0.1_marigold",
+        "none",
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": 8,
+      "type": "SeeThrough_GenerateDepth",
+      "title": "05 重なり順を推定・seed固定",
+      "pos": [
+        1190,
+        0
+      ],
+      "size": [
+        340,
+        230
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "layers",
+          "type": "SEETHROUGH_LAYERS",
+          "link": 7
+        },
+        {
+          "name": "depth_model",
+          "type": "SEETHROUGH_DEPTH_MODEL",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "layers_depth",
+          "type": "SEETHROUGH_LAYERS_DEPTH",
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_GenerateDepth"
+      },
+      "widgets_values": [
+        246813579,
+        "fixed",
+        -1
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SeeThrough_PostProcess",
+      "title": "06 左右分割・髪補完（OpenCV）",
+      "pos": [
+        1600,
+        0
+      ],
+      "size": [
+        340,
+        230
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "layers_depth",
+          "type": "SEETHROUGH_LAYERS_DEPTH",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_PostProcess"
+      },
+      "widgets_values": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": 10,
+      "type": "SeeThrough_SavePSD",
+      "title": "07 体下地パーツ保存 → Download PSD",
+      "pos": [
+        2010,
+        0
+      ],
+      "size": [
+        340,
+        230
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "revenant_body",
+        "Download PSD",
+        "Download Depth PSD"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "PreviewImage",
+      "title": "分割結果：欠け・背景残り・形の変化を確認",
+      "pos": [
+        2010,
+        350
+      ],
+      "size": [
+        450,
+        520
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 11
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 12,
+      "type": "PreviewImage",
+      "title": "入力確認：背景は白／形と寸法を確認",
+      "pos": [
+        390,
+        520
+      ],
+      "size": [
+        340,
+        440
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 13,
+      "type": "Note",
+      "title": "使い方と限界",
+      "pos": [
+        0,
+        -430
+      ],
+      "size": [
+        720,
+        140
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "体下地から肌・インナー・ジャケット・袖の候補を分割します。Run後Download PSD。原画PSDへ必要な体パーツを移して手動調整。"
+      ]
+    },
+    {
+      "id": 14,
+      "type": "Note",
+      "title": "実行前に確認",
+      "pos": [
+        800,
+        -430
+      ],
+      "size": [
+        980,
+        290
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "既存See-throughノードのみ使用。初回はモデルを自動ダウンロードします。group_offload=true、768pxで開始。メモリ不足時は512px。\nこれは生成ベースの分割候補です。花・蔓の個別認識、原画の画素保持、隠れた部分の正確さを保証しません。\n両PSDの自動位置合わせ・自動合成は行いません。出力寸法はPSD/layers.jsonを確認。\nPNGはパーツごとにクロップされ、座標はlayers.jsonに保存されます。原位置で組むにはPSDを使用。\nLaMa未導入による失敗を避けuse_lama=false。髪分割の品質は出力を確認。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      1,
+      3,
+      0,
+      "MASK"
+    ],
+    [
+      2,
+      2,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      1,
+      0,
+      4,
+      1,
+      "IMAGE"
+    ],
+    [
+      4,
+      3,
+      0,
+      4,
+      2,
+      "MASK"
+    ],
+    [
+      5,
+      4,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      5,
+      0,
+      6,
+      1,
+      "SEETHROUGH_LAYERDIFF_MODEL"
+    ],
+    [
+      7,
+      6,
+      0,
+      8,
+      0,
+      "SEETHROUGH_LAYERS"
+    ],
+    [
+      8,
+      7,
+      0,
+      8,
+      1,
+      "SEETHROUGH_DEPTH_MODEL"
+    ],
+    [
+      9,
+      8,
+      0,
+      9,
+      0,
+      "SEETHROUGH_LAYERS_DEPTH"
+    ],
+    [
+      10,
+      9,
+      0,
+      10,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      11,
+      9,
+      1,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      12,
+      4,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.65,
+      "offset": [
+        80,
+        460
+      ]
+    }
+  },
+  "version": 0.4
+}
