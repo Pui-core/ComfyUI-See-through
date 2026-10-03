@@ -85,3 +85,16 @@ WindowsのGIMP 3.2.6で、作業中の文書を `revenant_before_gimp_adjustment
 - 入力素材: `output/revenant_native_v2_layers.json` と同フォルダの参照PNG。画像と輪郭指定はGitに含めません。
 
 GIMPの作業中文書を日時付きXCFで退避してからコピーを編集し、GIMP自身でXCF/PSDを保存しました。PSD再読込の47層と合成画像を確認しています。これは保存済み補修素材の再出力ワークフローであり、別の画像を自動修復するものではありません。元画像以上の解像感を生成した4K素材でもありません。
+
+## 4344pxへの高精細化
+
+ownerの4000px以上という指定に合わせ、47層を維持した `revenant_4344` をローカルに作成しました。キャンバスと全レイヤーの座標・寸法は1448px版の3倍、4344×4344pxです。
+
+RGBには公式の [RealESRGAN_x4plus_anime_6B](https://github.com/xinntao/Real-ESRGAN/blob/master/docs/anime_model.md) を使用し、4倍のモデル出力を3倍寸法へ縮小しました。モデル出力85%と通常拡大15%を混ぜ、透過は別にbicubicで拡大しています。独立したパーツの超解像で生じた顔・髪などの色の段差は、合成画像を同じ設定で高精細化した結果に見える部分を合わせて補正しました。頭部内部の微小な透過の隙間は後髪の下地で補っています。隠れている画素は各レイヤーの高精細化結果を保持します。
+
+- GIMP編集用: `Desktop/model/SeeThrough-workflows/revenant_4344.xcf`
+- PSDと透過PNG: 同フォルダの `revenant_4344.psd` / `revenant_4344.png`
+- 再出力JSON: `workflows/seethrough-revenant-4344.json`
+- 入力: `output/revenant_4344_layers.json` と参照PNG。個人素材はGitに含めません。
+
+このJSONは保存済み4344px素材の再出力用で、超解像モデルの実行を含みません。GIMPでPSDを開き直し、47層と4344×4344pxの寸法を確認しています。元の1448px版は保持しています。高精細化は元絵の情報量や既存の隠面を完全に描き直すものではなく、Live2Dで動かした際の検証は別途必要です。
