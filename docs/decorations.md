@@ -98,3 +98,18 @@ RGBには公式の [RealESRGAN_x4plus_anime_6B](https://github.com/xinntao/Real-
 - 入力: `output/revenant_4344_layers.json` と参照PNG。個人素材はGitに含めません。
 
 このJSONは保存済み4344px素材の再出力用で、超解像モデルの実行を含みません。GIMPでPSDを開き直し、47層と4344×4344pxの寸法を確認しています。元の1448px版は保持しています。高精細化は元絵の情報量や既存の隠面を完全に描き直すものではなく、Live2Dで動かした際の検証は別途必要です。
+
+## 隠面・茨の補修版の再出力
+
+`seethrough-revenant-underpainted.json` は、4344×4344px・57層の保存済み補修素材をPSDへ再出力します。入力は `output/revenant_4344_underpainted_layers.json` と参照PNGです。個人素材はGitに含めません。このワークフロー自体が隠面生成や輪郭修復を行うものではありません。
+
+ローカルの補修素材では、既存の髪除去済み画像・肌土台・衣装画像を高精細化して、後ろ髪の内側、顔と首、左右の耳、白目・瞳、口内・歯・舌を補完しました。上下まぶた・上下唇を分け、袖と腰の接合部には胴体の下に隠れる重なりを追加しています。花と葉は輪郭を再選択し、腕・首の茨はつながる曲線として描き直して手前と奥に分けています。肩から上腕の花をつなぐ茨も追加しています。リング支持紐やネックレスなどの装飾は引き継ぎます。
+
+- 編集用: `Desktop/model/SeeThrough-workflows/revenant_4344_underpainted.xcf`
+- PSD / 透過PNG: 同フォルダの `revenant_4344_underpainted.psd` / `.png`
+- 部品確認: `revenant_4344_underpainted-parts-check.jpg`
+- 簡易可動確認: `revenant_4344_underpainted-face-movement-check.jpg` / `revenant_4344_underpainted-overlap-check.gif`
+
+想定は通常配信用の小さな首振り・目や口の動き・髪や装飾の揺れ・腕の小さな動きです。確認画像はパーツの移動と簡易的な口の変形による補完範囲の確認で、Cubismでのリギング検証ではありません。大きな横向きや腕上げに対応する素材ではありません。瞳は白目へクリッピングし、まぶた・白目を連動して変形します。茨の手前と奥は対応する腕・首の同じデフォーマへ入れ、接続位置を保ちます。花と葉は部位単位のまとまりで、花弁1枚ずつには分かれていません。
+
+GIMPでPSDを再読込し、57層と4344pxの寸法を確認しました。XCFからの合成PNGと再読込PSDの合成PNGでは、alpha最大差は0、表示画素のRGB平均差は約0.112/255です。実際の保存済みパーツ読込モジュールでも57層の読込と描画順を確認しています。新しいJSONをComfyUI GUIでRunする確認はしていません。ローカルには `revenant_4344_underpainted_parts/layers.json` と参照PNG一式も配置し、元のGIMP文書は日時付きXCFへ退避しています。
