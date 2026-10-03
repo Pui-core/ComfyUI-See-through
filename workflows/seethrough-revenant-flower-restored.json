@@ -1,0 +1,170 @@
+{
+  "last_node_id": 4,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "RevenantLoadSavedParts",
+      "title": "01 花の欠けを補修した保存済みレイヤー",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "part_names",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantLoadSavedParts"
+      },
+      "widgets_values": [
+        "revenant_with_decorations_flower_restored_layers.json"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "PreviewImage",
+      "title": "02 合成確認",
+      "pos": [
+        420,
+        0
+      ],
+      "size": [
+        390,
+        500
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 3,
+      "type": "SeeThrough_SavePSD",
+      "title": "03 修正済みRGBAをPSDに保存",
+      "pos": [
+        860,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "revenant_flower_restored_reexport",
+        "Download PSD",
+        "Download Depth PSD"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "Note",
+      "title": "補修済みレイヤーの再出力",
+      "pos": [
+        0,
+        -300
+      ],
+      "size": [
+        1200,
+        250
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "花芯・淡色花弁を原画から手動補修した保存済みRGBAを読み込みます。色の再判定・再抽出は行いません。\n初期値は体＋装飾32レイヤー。装飾10レイヤーだけなら01を revenant_decorations_flower_restored_layers.json に変更。\n参照JSONとPNGはComfyUIの実際のoutputフォルダに必要です。個人画像はGitには含まれません。\nRun後、この画面唯一のDownload PSDから保存。Download Depth PSDは使いません。\nマスクの補修処理・生成による描き足しを実行するワークフローではありません。細い蔓や葉の輪郭は必要に応じて別途調整してください。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      3,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8,
+      "offset": [
+        120,
+        330
+      ]
+    }
+  },
+  "version": 0.4
+}
