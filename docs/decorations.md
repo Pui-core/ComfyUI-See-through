@@ -72,3 +72,16 @@ WindowsのGIMP 3.2.6で、作業中の文書を `revenant_before_gimp_adjustment
 ユーザー環境の `Desktop/model/SeeThrough-workflows` に `revenant_gimp_adjusted.xcf`、`revenant_gimp_adjusted.psd`、`revenant_gimp_adjusted-preview.png` を保存しています。編集元はXCFです。PSDもGIMPで再読込し、44層・黒い衣装・装飾の表示を確認しました。再読込の合成アルファ差は0ですが、RGBの合成結果には差があるため、PSDとXCFの画素完全一致は保証しません。
 
 これらの個人画像と輪郭指定はGitに含めません。GIMPで非表示や順序変更を試した文書は原本として残し、調整版は別文書・別名で保存します。
+
+## 紐・ネックレス・顔の原寸補修版
+
+44層版では、金属の色選別が黒い支持ベルトを除外し、ネックレスのリンクも一部欠けていました。また、顔は768pxで分解した素材を拡大したため、元画像の細部が失われていました。
+
+ローカルの `revenant_native_v2` は、肩と身頃のリング支持ベルト2層を追加し、チェーンを原画の輪郭指定で切り直しています。顔・髪などの見えている画素は1086×1448の装飾除去済み画像から原寸で補修し、首元の後髪を1層追加しました。衣装レイヤーに混入していた首元の灰色の線も除去しています。キャンバスは1448×1448、合計47層です。顔全体を1枚に統合せず既存のパーツ区分を保持していますが、隠面には以前の生成素材が残るため、可動時の境界と描き足しの確認は別途必要です。
+
+- 編集用: `Desktop/model/SeeThrough-workflows/revenant_native_v2.xcf`
+- PSD: 同フォルダの `revenant_native_v2.psd`
+- 再出力: `workflows/seethrough-revenant-native-v2.json`
+- 入力素材: `output/revenant_native_v2_layers.json` と同フォルダの参照PNG。画像と輪郭指定はGitに含めません。
+
+GIMPの作業中文書を日時付きXCFで退避してからコピーを編集し、GIMP自身でXCF/PSDを保存しました。PSD再読込の47層と合成画像を確認しています。これは保存済み補修素材の再出力ワークフローであり、別の画像を自動修復するものではありません。元画像以上の解像感を生成した4K素材でもありません。
