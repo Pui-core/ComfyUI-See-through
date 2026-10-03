@@ -147,3 +147,19 @@ v2には、耳の下で襟足が別の塊に見える継ぎ目と、耳たぶか
 成果物は `Desktop/model/SeeThrough-workflows/revenant_4344_aligned_v3.xcf` / `.psd` / `.png`。同フォルダの `revenant_4344_aligned_v3-alignment-check.jpg` が拡大比較、`revenant_4344_aligned_v3_parts/layers.json` と参照PNGが部品一式です。再出力には `workflows/seethrough-revenant-aligned-v3.json` と `output/revenant_4344_aligned_v3_layers.json`、参照PNGを使用します。このワークフローは保存済み素材の再出力用で、位置補正自体は行いません。個人素材と編集スクリプトはGitに含めません。
 
 両耳の接続位置を拡大合成で確認し、GIMP保存後のPSDを再読込して52層・4344pxと全層の座標・寸法を照合しました。合成alpha最大差は0、表示画素のRGB平均差は約0.275/255です。対象外47層のPNGは旧版と同一で、頭部より下（y=1560以降）の合成画素も旧版と一致します。保存データの一致だけでは解剖学的な位置の正しさを保証しないため、耳・毛束の付け根は画像でも確認しています。ComfyUI GUIのRunとCubismでのリギング検証は未実施です。ピアスの付け根を耳と同じ頭部デフォーマに追従させ、揺れは付け根を固定して設定してください。
+
+## 前髪・耳・金具・葉・肩を補修したv4
+
+v3には前髪の色除去による欠け、左耳の輪郭不足、ピアスの接続金具不足、腕の奥側分割に巻き込まれた葉、肩上の花と接続蔓の不整合が残っていました。`revenant_4344_repaired_v4` は対象8層を補修し、4344×4344px・52層を維持します。
+
+- 前髪はX字に交差する毛束・細い毛先を保って描画補修。髪の隙間は透明にし、肌・耳の画素を含めません。
+- 画面左の耳を、上端から耳たぶまで続く輪郭と隠れる付け根を持つ素材へ更新。
+- 両ピアスに閉じた上部リングと連結リングを補い、耳たぶから本体まで接続。
+- 左腕は既存の手前・奥の植物レイヤーを再結合し、奥側へ回す範囲を戻り茎だけに限定。葉先を含む植物全体の画素は保持。
+- 肩花の上部を原画座標換算で右8px・上12px移動し、y570で変位をゼロにする局所変形。肩の付け根の蔓を補完し、小さな衣装の透過穴を補修。腕・手の位置は維持。
+
+編集用は `Desktop/model/SeeThrough-workflows/revenant_4344_repaired_v4.xcf`、PSD / PNGも同名です。部品一式は `revenant_4344_repaired_v4_parts/layers.json` と参照PNG、比較画像は `revenant_4344_repaired_v4-compare-head.jpg` / `-compare-left.jpg` / `-compare-shoulder.jpg`。`repair-v4-prompts.txt` に組み込み画像生成のプロンプトを記録しています。前髪・耳・金具・接続蔓の生成素材はローカルの `repair-v4-sources` に保存し、原画・生成素材・個別編集スクリプトはGitに含めません。
+
+再出力には `workflows/seethrough-revenant-repaired-v4.json` と `output/revenant_4344_repaired_v4_layers.json`、参照PNGを使用します。JSONは保存済み素材の読込・PSD出力用で、補修処理自体を実行するものではありません。GIMPの旧文書を退避して複製側へ補修を反映します。Cubismでのリギング検証と新JSONのComfyUI GUIのRunは未実施です。
+
+GIMPで保存したPSDを再読込し、52層と全層の座標・寸法を照合しました。合成alpha最大差0、表示画素のRGB平均差約0.276/255。対象外44層の画像・座標、肩花のy1710以降は旧版と一致します。左右へ分ける前の腕の植物全体も全画素一致し、葉の復元に伴う色や形の作り直しはありません。導入済みのパーツ読込モジュールで52層・描画順を確認し、頭部・腕・肩の拡大画像も確認しました。
