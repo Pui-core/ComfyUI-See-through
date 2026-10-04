@@ -1,0 +1,170 @@
+{
+  "last_node_id": 4,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "RevenantLoadSavedParts",
+      "title": "01 後ろ髪と裾を整えた4344px・53層",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "part_names",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantLoadSavedParts"
+      },
+      "widgets_values": [
+        "revenant_4344_slimfit_v7_layers.json"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "PreviewImage",
+      "title": "02 合成確認",
+      "pos": [
+        420,
+        0
+      ],
+      "size": [
+        390,
+        500
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 3,
+      "type": "SeeThrough_SavePSD",
+      "title": "03 修正済みRGBAをPSDに保存",
+      "pos": [
+        860,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "revenant_4344_slimfit_v7_reexport",
+        "Download PSD",
+        "Download Depth PSD"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "Note",
+      "title": "後ろ髪の細身化と裾の補修版",
+      "pos": [
+        0,
+        -300
+      ],
+      "size": [
+        1200,
+        250
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "4344×4344px・53層の保存済みRGBAを、座標と透過を保持してPSDへ再出力します。\noutput/revenant_4344_slimfit_v7_layers.json と参照PNGが必要です。個人素材はGitに含みません。\n後ろ髪の横の膨らみを抑えて襟足を合わせ、画面右の裾の空きと下端の欠けを補修した版です。\nこのJSONは生成・補修・超解像・座標調整を実行しません。Run後にDownload PSDを使用します。\n編集用: Desktop/model/SeeThrough-workflows/revenant_4344_slimfit_v7.xcf\n顔・前髪・目・耳・装飾の画像と座標は保持しています。Cubismでのリギング検証は未実施です。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      3,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      2,
+      1,
+      1,
+      2,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8,
+      "offset": [
+        120,
+        330
+      ]
+    }
+  },
+  "version": 0.4
+}
