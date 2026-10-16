@@ -50,7 +50,7 @@ for (const expression of refs.Expressions ?? []) {
     assert(['Add', 'Multiply', 'Overwrite'].includes(parameter.Blend ?? 'Add'), 'Unknown expression blend mode');
   }
   for (const key of ['FadeInTime', 'FadeOutTime']) {
-    if (data[key] !== undefined) assert(Number.isFinite(data[key]) && data[key] >= 0, 'Invalid expression fade');
+    if (data[key] !== undefined) assert(Number.isFinite(data[key]), 'Invalid expression fade');
   }
   expressionCount++;
 }

@@ -105,7 +105,7 @@ node tools/check-live2d-bundle.mjs /path/to/Revenant.model3.json
 ]
 ```
 
-nizimaの「表情・モーション」から選びます。表情を解除すると通常の顔へ戻ります。切り替える場合は前の表情を解除してください。目の開度はMultiplyで調整し、まばたきが残るようにしています。表情は `ParamMouthOpenY` を操作しません。
+nizimaの「表情・モーション」から選びます。nizima LIVE 2.6.4の実画面ではファイル名の `SoftSmile`（微笑み）/ `Smile`（笑顔）として表示されます。表情を解除すると通常の顔へ戻ります。切り替える場合は前の表情を解除してください。目の開度はMultiplyで調整し、まばたきが残るようにしています。表情は `ParamMouthOpenY` を操作しません。
 
 仕様は [nizimaの表情・モーション](https://docs.nizimalive.com/manual/expression-motion/) と [Live2Dのexp3仕様](https://github.com/Live2D/CubismSpecs/blob/master/FileFormats/exp3.json.md) を参照してください。
 
@@ -123,6 +123,8 @@ nizimaの「表情・モーション」から選びます。表情を解除す�
 合計8個の出力パラメータを追加しています。ピアスは頭と体の入力を使い、胴体の装飾は主に体の入力へ接続します。腰チェーンを上辺固定のWarpへ入れると低い側の留め具が動くため、中央だけを選択したメッシュキーを物理演算へ接続しています。
 
 [AccessoryDemo.motion3.json](../examples/nizima/AccessoryDemo.motion3.json) は6秒の確認用モーションです。`FileReferences.Motions.AccessoryDemo` へ参照を追加します。頭と体の4パラメータだけを動かし、アクセサリーの出力値は物理演算へ任せます。笑顔の値も上書きしません。
+
+nizimaの一覧で区別できるよう、各モーションの実ファイル名を `Idle.motion3.json`、`Blink.motion3.json`、`Nod.motion3.json`、`Shake.motion3.json`、`AccessoryDemo.motion3.json` にします。先頭へ共通の `Revenant_Smile.` を付けると、実アプリでは最初のドットまでの同じ名前が5行に表示されました。ファイル名とモデルJSONの参照を一緒に更新します。
 
 更新版は54 ArtMesh、29パラメータ、表情2種、モーション5種、物理演算10系統です。8系統のアクセサリーへ入力を1.5秒与えて戻し、60fps・6秒の数値検証で反応・振り戻し・減衰を確認しました。この条件で最大絶対値0.938、全出力の最終値0です。これは制作アプリ内の物理演算検証で、本人のカメラ/iPhoneによる調整とは区別します。最終MOC3の公式Core検証とnizimaでの実表示結果はIssue/PRへ記録します。
 
