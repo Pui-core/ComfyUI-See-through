@@ -38,8 +38,21 @@ const textures = refs.Textures.map(ref => {
 for (const key of ['Physics', 'Pose', 'DisplayInfo', 'UserData']) {
   if (refs[key]) JSON.parse(fs.readFileSync(resolveReference(refs[key]), 'utf8'));
 }
+let expressionCount = 0;
 for (const expression of refs.Expressions ?? []) {
-  JSON.parse(fs.readFileSync(resolveReference(expression.File), 'utf8'));
+  assert(typeof expression.Name === 'string' && expression.Name.length > 0, 'Missing expression name');
+  const data = JSON.parse(fs.readFileSync(resolveReference(expression.File), 'utf8'));
+  assert.equal(data.Type, 'Live2D Expression', 'Expected exp3 expression type');
+  assert(Array.isArray(data.Parameters), 'Missing expression parameters');
+  for (const parameter of data.Parameters) {
+    assert(typeof parameter.Id === 'string' && parameter.Id.length > 0, 'Missing expression parameter ID');
+    assert(Number.isFinite(parameter.Value), 'Expression value must be finite');
+    assert(['Add', 'Multiply', 'Overwrite'].includes(parameter.Blend ?? 'Add'), 'Unknown expression blend mode');
+  }
+  for (const key of ['FadeInTime', 'FadeOutTime']) {
+    if (data[key] !== undefined) assert(Number.isFinite(data[key]), 'Invalid expression fade');
+  }
+  expressionCount++;
 }
 let motionCount = 0;
 for (const group of Object.values(refs.Motions ?? {})) {
@@ -54,6 +67,6 @@ for (const group of Object.values(refs.Motions ?? {})) {
 }
 console.log(JSON.stringify({
   model: path.basename(modelPath), packagingValid: true,
-  referencedFiles: files.size, mocBytes: moc.length, textures, motionCount,
+  referencedFiles: files.size, mocBytes: moc.length, textures, motionCount, expressionCount,
   note: 'Reference and header checks only; validate MOC3 and deformation in a Cubism runtime separately.',
 }, null, 2));

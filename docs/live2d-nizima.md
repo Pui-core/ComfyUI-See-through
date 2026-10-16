@@ -87,3 +87,45 @@ node tools/check-live2d-bundle.mjs /path/to/Revenant.model3.json
 - 検証結果とアプリでの確認結果は本Issue/PRに記録する。
 
 小さな顔向き・表情・呼吸の動作を想定しています。大きく横を向く、腕を高く上げる等の動作は追加の隠面素材とリギングが必要です。カメラ・iPhoneでの本人のトラッキング感度は利用環境で合わせてください。
+
+## 笑顔とアクセサリーの揺れを追加した版
+
+`Revenant_Smile/Revenant_Smile.model3.json` は、笑顔とアクセサリーの物理演算を追加した更新版です。旧版はそのまま保持し、モデル名も変えて登録します。編集用データは `Revenant_Smile_Editable`、確認画像と記録は `Revenant_Smile_Checks` に保存します。
+
+### 笑顔
+
+`ParamSmile`（0〜1、初期値0）で上下唇の口角、下まぶた、頬、眉を連動させています。上下唇では口開閉の両端、口内では口の形3点×口開閉3点の全組合せに笑顔キーを付け、会話中も笑顔を維持します。顔向きは既存の親デフォーマから引き継ぎます。
+
+同梱する表情定義は [SoftSmile.exp3.json](../examples/nizima/SoftSmile.exp3.json) と [Smile.exp3.json](../examples/nizima/Smile.exp3.json) です。モデルフォルダの `expressions/` に置き、書き出した `model3.json` の `FileReferences.Expressions` に次を追加します。PSD2Liveで再書き出しした場合も、この参照を引き継いでください。
+
+```json
+"Expressions": [
+  {"Name": "微笑み", "File": "expressions/SoftSmile.exp3.json"},
+  {"Name": "笑顔", "File": "expressions/Smile.exp3.json"}
+]
+```
+
+nizimaの「表情・モーション」から選びます。nizima LIVE 2.6.4の実画面ではファイル名の `SoftSmile`（微笑み）/ `Smile`（笑顔）として表示されます。表情を解除すると通常の顔へ戻ります。切り替える場合は前の表情を解除してください。目の開度はMultiplyで調整し、まばたきが残るようにしています。表情は `ParamMouthOpenY` を操作しません。
+
+仕様は [nizimaの表情・モーション](https://docs.nizimalive.com/manual/expression-motion/) と [Live2Dのexp3仕様](https://github.com/Live2D/CubismSpecs/blob/master/FileFormats/exp3.json.md) を参照してください。
+
+### アクセサリー
+
+| 部品 | 動きと固定箇所 |
+| --- | --- |
+| ネックレスとペンダント | 同じWarpへまとめ、上側を固定して下側を遅らせる |
+| 左右ピアス | 左右別々の揺れ。各側の表裏は同じWarpで同期 |
+| 肩のリングとタグ | 上の留め部分を固定した小さな振り子 |
+| 身頃のリング/チェーンとタグ | 左右で速度を少し変えた揺れ |
+| 袖のタグ | 腕の親変形を引き継ぎ、タグに小さな揺れを追加 |
+| 腰チェーン | 高さの違う両端を保ち、中央のたるみだけを動かす |
+
+合計8個の出力パラメータを追加しています。ピアスは頭と体の入力を使い、胴体の装飾は主に体の入力へ接続します。腰チェーンを上辺固定のWarpへ入れると低い側の留め具が動くため、中央だけを選択したメッシュキーを物理演算へ接続しています。
+
+[AccessoryDemo.motion3.json](../examples/nizima/AccessoryDemo.motion3.json) は6秒の確認用モーションです。`FileReferences.Motions.AccessoryDemo` へ参照を追加します。頭と体の4パラメータだけを動かし、アクセサリーの出力値は物理演算へ任せます。笑顔の値も上書きしません。
+
+nizimaの一覧で区別できるよう、各モーションの実ファイル名を `Idle.motion3.json`、`Blink.motion3.json`、`Nod.motion3.json`、`Shake.motion3.json`、`AccessoryDemo.motion3.json` にします。先頭へ共通の `Revenant_Smile.` を付けると、実アプリでは最初のドットまでの同じ名前が5行に表示されました。ファイル名とモデルJSONの参照を一緒に更新します。
+
+更新版は54 ArtMesh、29パラメータ、表情2種、モーション5種、物理演算10系統です。8系統のアクセサリーへ入力を1.5秒与えて戻し、60fps・6秒の数値検証で反応・振り戻し・減衰を確認しました。この条件で最大絶対値0.938、全出力の最終値0です。これは制作アプリ内の物理演算検証で、本人のカメラ/iPhoneによる調整とは区別します。最終MOC3の公式Core検証とnizimaでの実表示結果はIssue/PRへ記録します。
+
+最終MOC3は公式Coreで整合検査に成功し、29パラメータすべてに実変形があり、全極値で非有限座標はありません。旧版との中立姿勢比較では全54メッシュの頂点数・index・UV・描画順・maskが一致し、頂点位置の最大差は4344pxキャンバス上で0.714pxです。表情2種と物理演算10系統の参照先パラメータも照合済みです。
