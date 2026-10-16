@@ -1,0 +1,110 @@
+{
+  "Version": 3,
+  "Meta": {
+    "Duration": 6,
+    "Fps": 60,
+    "Loop": false,
+    "AreBeziersRestricted": true,
+    "CurveCount": 4,
+    "TotalSegmentCount": 20,
+    "TotalPointCount": 24,
+    "UserDataCount": 0,
+    "TotalUserDataSize": 0
+  },
+  "FadeInTime": 0.35,
+  "FadeOutTime": 0.35,
+  "Curves": [
+    {
+      "Target": "Parameter",
+      "Id": "ParamAngleX",
+      "Segments": [
+        0,
+        0,
+        0,
+        0.7,
+        12,
+        0,
+        1.4,
+        -12,
+        0,
+        2.1,
+        8,
+        0,
+        3,
+        0,
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Id": "ParamAngleZ",
+      "Segments": [
+        0,
+        0,
+        0,
+        0.7,
+        4,
+        0,
+        1.4,
+        -4,
+        0,
+        2.1,
+        2,
+        0,
+        3,
+        0,
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Id": "ParamBodyAngleX",
+      "Segments": [
+        0,
+        0,
+        0,
+        0.7,
+        4,
+        0,
+        1.4,
+        -4,
+        0,
+        2.1,
+        3,
+        0,
+        3,
+        0,
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "Target": "Parameter",
+      "Id": "ParamBodyAngleZ",
+      "Segments": [
+        0,
+        0,
+        0,
+        0.7,
+        3,
+        0,
+        1.4,
+        -3,
+        0,
+        2.1,
+        2,
+        0,
+        3,
+        0,
+        0,
+        6,
+        0
+      ]
+    }
+  ]
+}
