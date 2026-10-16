@@ -57,7 +57,7 @@ function main() {
     map('右眉', 'BrowRightY', 'ParamBrowRY', 0, 1, -0.4, 0.4),
     map('口開閉', 'MouthOpen', 'ParamMouthOpenY', 0, 1, 0, 1, 7),
     map('口の形', 'MouthSmile', 'ParamMouthForm', 0, 1, 0, 0.45),
-    map('笑顔を自動認識', 'MouthSmile', 'ParamSmile', 0.35, 0.8, 0, 1, 20),
+    map('笑顔を自動認識', 'MouthSmile', 'ParamSmile', 0.6, 0.85, 0, 1, 20),
     map('体左右', 'FaceAngleX', 'ParamBodyAngleX', -30, 30, -5, 5, 30),
     map('体上下', 'FaceAngleY', 'ParamBodyAngleY', -25, 25, -3, 3, 30),
     map('体傾き', 'FaceAngleZ', 'ParamBodyAngleZ', -30, 30, -4, 4, 30),
@@ -80,7 +80,11 @@ function main() {
     GeneralSettings: { ModelVolume: 90, TimeUntilTrackingLostIdleAnimation: 0,
       WorkshopSharingForbidden: true, EnableExpressionSaving: false },
     ParameterSettings: mappings,
-    Hotkeys: [], HotkeySettings: { UseOnScreenHotkeys: false, UseKeyboardHotkeys: true,
+    Hotkeys: [
+      { HotkeyID: crypto.randomUUID().replaceAll('-', ''), Name: 'Webカメラの開始・停止',
+        Action: 'ToggleTracker', File: 'Webcam', Folder: '', IsGlobal: false, IsActive: true,
+        Triggers: { Trigger1: '', Trigger2: '', Trigger3: '', ScreenButton: -1 } },
+    ], HotkeySettings: { UseOnScreenHotkeys: false, UseKeyboardHotkeys: true,
       SendOnScreenHotkeysToPC: false, OnScreenHotkeyAlpha: 90 },
     SavedActiveExpressions: [], ModelFolder: '<VTS_MODEL_BASE_PATH_PLACEHOLDER>',
   };
