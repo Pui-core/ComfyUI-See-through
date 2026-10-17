@@ -1,5 +1,7 @@
 # VTube StudioのモデルをOBSへ透過で取り込む
 
+首・体の追跡調整と、無料版ミニキャラの説明は [Issue #21の更新記録](live2d-natural-motion.md) を参照してください。
+
 Issue #19の設定記録です。[修正版モデル](live2d-polish.md)をVTube Studioで動かし、その映像をOBSへ取り込みます。個人のシーンコレクション、画像、認証設定はGitへ含めません。
 
 ## 取り込み方法
