@@ -1,0 +1,15 @@
+{
+  "name": "live2d-petal-trigger-dependencies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated dependencies for the local VTube Studio petal trigger",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "ws": "8.22.0"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
