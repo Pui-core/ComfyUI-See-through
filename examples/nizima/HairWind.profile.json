@@ -1,0 +1,34 @@
+{
+  "PhysicsCustomizationSettings": {
+    "WindMultipliersPerPhysicsGroup": [
+      {
+        "ID": "PhysicsHairFront",
+        "Value": 0.1
+      },
+      {
+        "ID": "PhysicsHairBack",
+        "Value": 0.14
+      },
+      {
+        "ID": "PhysicsSwing_HairPitch",
+        "Value": 0.06
+      },
+      {
+        "ID": "PhysicsSwing_NapeL_X",
+        "Value": 0.08
+      },
+      {
+        "ID": "PhysicsSwing_NapeL_Y",
+        "Value": 0.08
+      },
+      {
+        "ID": "PhysicsSwing_NapeR_X",
+        "Value": 0.1
+      },
+      {
+        "ID": "PhysicsSwing_NapeR_Y",
+        "Value": 0.1
+      }
+    ]
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "operation": "physics_put",
+  "scope": "Apply each request to the existing corresponding physics ID; preserve geometry and other groups.",
+  "requests": [
+    {
+      "id": "PhysicsHairBack",
+      "inputs": [
+        {
+          "parameter": "ParamAngleX",
+          "type": "x",
+          "weight": 80,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 80,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleX",
+          "type": "x",
+          "weight": 20,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleZ",
+          "type": "angle",
+          "weight": 20,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamHairBack",
+          "vertex": 1,
+          "scale": 1.75,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 18.5,
+          "mobility": 0.93,
+          "delay": 0.54,
+          "acceleration": 1.12
+        }
+      ]
+    },
+    {
+      "id": "PhysicsHairFront",
+      "inputs": [
+        {
+          "parameter": "ParamAngleX",
+          "type": "x",
+          "weight": 85,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleX",
+          "type": "x",
+          "weight": 15,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 85,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleZ",
+          "type": "angle",
+          "weight": 15,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamHairFront",
+          "vertex": 1,
+          "scale": 1.6,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 9.8,
+          "mobility": 0.9,
+          "delay": 0.68,
+          "acceleration": 1.25
+        }
+      ]
+    },
+    {
+      "id": "PhysicsSwing_HairPitch",
+      "inputs": [
+        {
+          "parameter": "ParamAngleY",
+          "type": "x",
+          "weight": 85,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleY",
+          "type": "x",
+          "weight": 15,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 10,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamHairPitch",
+          "vertex": 1,
+          "scale": 1.08,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 13.5,
+          "mobility": 0.9,
+          "delay": 0.58,
+          "acceleration": 1.2
+        }
+      ]
+    },
+    {
+      "id": "PhysicsSwing_NapeL_X",
+      "inputs": [
+        {
+          "parameter": "ParamAngleX",
+          "type": "x",
+          "weight": 75,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 75,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleX",
+          "type": "x",
+          "weight": 25,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleZ",
+          "type": "angle",
+          "weight": 25,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamNapeLSwing",
+          "vertex": 1,
+          "scale": 1.32,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 12.5,
+          "mobility": 0.915,
+          "delay": 0.6,
+          "acceleration": 1.2
+        }
+      ]
+    },
+    {
+      "id": "PhysicsSwing_NapeL_Y",
+      "inputs": [
+        {
+          "parameter": "ParamAngleY",
+          "type": "x",
+          "weight": 75,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleY",
+          "type": "x",
+          "weight": 25,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 12,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamNapeLPitch",
+          "vertex": 1,
+          "scale": 1.05,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 11.5,
+          "mobility": 0.9,
+          "delay": 0.64,
+          "acceleration": 1.25
+        }
+      ]
+    },
+    {
+      "id": "PhysicsSwing_NapeR_X",
+      "inputs": [
+        {
+          "parameter": "ParamAngleX",
+          "type": "x",
+          "weight": 75,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 75,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleX",
+          "type": "x",
+          "weight": 25,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleZ",
+          "type": "angle",
+          "weight": 25,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamNapeRSwing",
+          "vertex": 1,
+          "scale": 1.35,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 14,
+          "mobility": 0.925,
+          "delay": 0.55,
+          "acceleration": 1.12
+        }
+      ]
+    },
+    {
+      "id": "PhysicsSwing_NapeR_Y",
+      "inputs": [
+        {
+          "parameter": "ParamAngleY",
+          "type": "x",
+          "weight": 75,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamBodyAngleY",
+          "type": "x",
+          "weight": 25,
+          "reflect": false
+        },
+        {
+          "parameter": "ParamAngleZ",
+          "type": "angle",
+          "weight": 12,
+          "reflect": false
+        }
+      ],
+      "outputs": [
+        {
+          "parameter": "ParamNapeRPitch",
+          "vertex": 1,
+          "scale": 1.08,
+          "weight": 100,
+          "reflect": false
+        }
+      ],
+      "segments": [
+        {
+          "length": 12.8,
+          "mobility": 0.915,
+          "delay": 0.59,
+          "acceleration": 1.18
+        }
+      ]
+    }
+  ]
+}
