@@ -1,0 +1,9 @@
+{
+  "description": "Partial VTS mapping patch for the existing rig with bodyZDegrees=10. Preserve other profile fields and mappings.",
+  "ParameterSettings": [
+    {"OutputLive2D":"ParamAngleX","Input":"FaceAngleX","InputRangeLower":-30,"InputRangeUpper":30,"OutputRangeLower":-21,"OutputRangeUpper":21,"Smoothing":15},
+    {"OutputLive2D":"ParamAngleY","Input":"FaceAngleY","InputRangeLower":-25,"InputRangeUpper":25,"OutputRangeLower":-16,"OutputRangeUpper":16,"Smoothing":15},
+    {"OutputLive2D":"ParamAngleZ","Input":"FaceAngleZ","InputRangeLower":-25,"InputRangeUpper":25,"OutputRangeLower":-15,"OutputRangeUpper":15,"Smoothing":15},
+    {"OutputLive2D":"ParamBodyAngleZ","Input":"FaceAngleZ","InputRangeLower":-15,"InputRangeUpper":15,"OutputRangeLower":-0.6,"OutputRangeUpper":0.6,"Smoothing":30}
+  ]
+}

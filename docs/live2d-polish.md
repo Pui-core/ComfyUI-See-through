@@ -1,5 +1,7 @@
 # 口・目・Z回転と髪、頭振りで散る花びら
 
+首・体の動きを抑える追跡設定は [Issue #21の更新記録](live2d-natural-motion.md) を参照してください。
+
 OBSへ透過で取り込む追加設定と実機確認は [Issue #19の設定記録](live2d-obs.md) を参照してください。
 
 Issue #17の追加修正です。対象は前版 `Revenant_Dynamics`、更新版は `Revenant_Polished`。前版、原本PSD、ユーザーのグローバルカメラ設定を保持し、新しいモデルとプロファイルへ適用します。個人の画像・PSD・モデル・認証情報・端末パスはGitへ含めません。[前回の慣性調整](live2d-dynamics.md)も参照してください。
