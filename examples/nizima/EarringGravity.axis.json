@@ -1,0 +1,108 @@
+{
+  "operation": "author_axis",
+  "request": {
+    "state": "REPLACE_WITH_CURRENT_WORKSPACE_STATE",
+    "project_id": "REPLACE_WITH_CURRENT_PROJECT_ID",
+    "request_id": "REPLACE_WITH_UNIQUE_REQUEST_ID",
+    "summary": "耳の取付環を残してピアス下部を重力へ回す汎用例",
+    "parameter": {
+      "id": "ParamEarringGravityZ",
+      "name": "ピアスの重力方向",
+      "min": -30,
+      "max": 30,
+      "default": 0
+    },
+    "shapes": [
+      {
+        "target": "mesh:ArtMeshEarwearL",
+        "value": -30,
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "rotate",
+            "degrees": 26,
+            "pivot": [
+              0.5,
+              0.1
+            ],
+            "selection": {
+              "rect": [
+                -1,
+                0.1,
+                2,
+                2
+              ],
+              "feather": 0.05
+            }
+          },
+          {
+            "type": "scale",
+            "factors": [
+              5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      },
+      {
+        "target": "mesh:ArtMeshEarwearL",
+        "value": 30,
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "rotate",
+            "degrees": -26,
+            "pivot": [
+              0.5,
+              0.1
+            ],
+            "selection": {
+              "rect": [
+                -1,
+                0.1,
+                2,
+                2
+              ],
+              "feather": 0.05
+            }
+          },
+          {
+            "type": "scale",
+            "factors": [
+              5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
