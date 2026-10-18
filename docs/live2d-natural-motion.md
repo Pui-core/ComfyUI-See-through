@@ -1,5 +1,7 @@
 # 首・体の振幅と頭Zの見え方を整える
 
+横向きと会話時の開口量の追加調整は [Issue #25の設定](live2d-yaw-mouth.md) を参照してください。
+
 髪だけを追加調整した後続版は [Issue #23の髪の更新記録](live2d-hair-motion.md) を参照してください。
 
 Issue #21の追加修正です。`Revenant_Polished` と原本を保持し、`Revenant_Natural` を別モデルとして作成します。今回の採用変更はVTube Studioの追跡プロファイルです。モデルの形状・描画・物理・8Kテクスチャは、検証済みPolishedの同一バイトを保持します。個人モデル、PSD、画像、VTS/OBS設定、認証情報はGitに含めません。

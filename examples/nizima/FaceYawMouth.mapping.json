@@ -1,0 +1,23 @@
+{
+  "description": "Partial VTS patch: increase yaw and mouth opening while preserving the raw mouth-interior hidden boundary.",
+  "ParameterSettings": [
+    {
+      "OutputLive2D": "ParamAngleX",
+      "Input": "FaceAngleX",
+      "InputRangeLower": -30,
+      "InputRangeUpper": 30,
+      "OutputRangeLower": -27,
+      "OutputRangeUpper": 27,
+      "Smoothing": 15
+    },
+    {
+      "OutputLive2D": "ParamMouthOpenY",
+      "Input": "MouthOpen",
+      "InputRangeLower": 0.018333333333333337,
+      "InputRangeUpper": 0.32,
+      "OutputRangeLower": 0,
+      "OutputRangeUpper": 1,
+      "Smoothing": 5
+    }
+  ]
+}
