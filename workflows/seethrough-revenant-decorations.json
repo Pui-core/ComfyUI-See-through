@@ -1,0 +1,628 @@
+{
+  "last_node_id": 12,
+  "last_link_id": 14,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "title": "01 花・蔓が付いた原画",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "revenant_original.png",
+        "image"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "RevenantLoadSavedParts",
+      "title": "02 装飾なし体下地/合成済み *_layers.json",
+      "pos": [
+        0,
+        400
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            3,
+            12
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "part_names",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantLoadSavedParts"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 3,
+      "type": "RevenantFitDecorationSource",
+      "title": "03 元画像をPSDキャンバスに等比配置",
+      "pos": [
+        420,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1
+        },
+        {
+          "name": "source_transparency",
+          "type": "MASK",
+          "link": 2
+        },
+        {
+          "name": "reference_parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "source_transparency",
+          "type": "MASK",
+          "links": [
+            5,
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantFitDecorationSource"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 4,
+      "type": "RevenantDecorationMask",
+      "title": "04 青紫候補・手動マスクで服や髪を除外",
+      "pos": [
+        830,
+        0
+      ],
+      "size": [
+        380,
+        400
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "source_transparency",
+          "type": "MASK",
+          "link": 5
+        },
+        {
+          "name": "region",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "add",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "exclude",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "overlay_preview",
+          "type": "IMAGE",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantDecorationMask"
+      },
+      "widgets_values": [
+        "blue_violet",
+        150,
+        205,
+        70,
+        50
+      ]
+    },
+    {
+      "id": 5,
+      "type": "RevenantExtractDecorations",
+      "title": "05 原画の色を保持してRGBA切り出し",
+      "pos": [
+        1270,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "source_transparency",
+          "type": "MASK",
+          "link": 7
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "decorations",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            11,
+            13
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantExtractDecorations"
+      },
+      "widgets_values": [
+        "flowers_vines",
+        8,
+        true
+      ]
+    },
+    {
+      "id": 6,
+      "type": "PreviewImage",
+      "title": "赤い部分＝候補（服の青紫も拾うので確認）",
+      "pos": [
+        830,
+        490
+      ],
+      "size": [
+        380,
+        440
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 7,
+      "type": "PreviewImage",
+      "title": "抽出結果：欠けはadd、余分はexcludeで修正",
+      "pos": [
+        1270,
+        490
+      ],
+      "size": [
+        380,
+        440
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 10
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 8,
+      "type": "SeeThrough_SavePSD",
+      "title": "06 装飾だけをPSD保存",
+      "pos": [
+        1690,
+        0
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "revenant_decorations",
+        "Download PSD",
+        "Download Depth PSD"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "RevenantAddDecorationLayers",
+      "title": "07 下地へ装飾レイヤー追加・XY調整",
+      "pos": [
+        1690,
+        410
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "base",
+          "type": "SEETHROUGH_PARTS",
+          "link": 12
+        },
+        {
+          "name": "decorations",
+          "type": "SEETHROUGH_PARTS",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SEETHROUGH_PARTS",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RevenantAddDecorationLayers"
+      },
+      "widgets_values": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": 10,
+      "type": "SeeThrough_SavePSD",
+      "title": "08 下地＋装飾PSD保存",
+      "pos": [
+        2110,
+        410
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "revenant_with_decorations",
+        "Download PSD",
+        "Download Depth PSD"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "LoadImageMask",
+      "title": "任意：白黒マスク画像→region/add/excludeへ接続",
+      "pos": [
+        0,
+        800
+      ],
+      "size": [
+        350,
+        240
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageMask"
+      },
+      "widgets_values": [
+        "",
+        "red"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "Note",
+      "title": "操作・限界",
+      "pos": [
+        0,
+        -410
+      ],
+      "size": [
+        1250,
+        330
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "原画と装飾なし下地のlayers.jsonを指定。再起動後実行。赤い候補は色判定であり花/蔓の意味認識ではありません。服の青紫・銀髪も拾う場合があります。\n白黒マスクをLoad Image (as Mask)でred読込しregion=範囲、add=補完、exclude=除外へ接続。マスク寸法は03の配置後キャンバスと一致させる。excludeを最後に適用。\n金属はmode=silver_metal＋対象領域region必須。manual_only＋addで完全手動マスクも可。金属はprefixをmetal等に変える。\n03は等比リサイズ＋中央余白のみ。内容による位置合わせではありません。基準PSDとズレる場合は合成を採用せず位置・マスクを修正。\n花と蔓が接続していれば同じパーツになります。split_componentsは離れた領域を分けるだけ。細部の欠けは手動補完が必要。\n追加レイヤーは最前面。原画側の衣服に焼き込まれた装飾は消しません。装飾のない下地を使って二重化を避ける。Download PSDで出力。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      1,
+      1,
+      3,
+      1,
+      "MASK"
+    ],
+    [
+      3,
+      2,
+      0,
+      3,
+      2,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      4,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      1,
+      4,
+      1,
+      "MASK"
+    ],
+    [
+      6,
+      3,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      3,
+      1,
+      5,
+      1,
+      "MASK"
+    ],
+    [
+      8,
+      4,
+      0,
+      5,
+      2,
+      "MASK"
+    ],
+    [
+      9,
+      4,
+      1,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      10,
+      5,
+      1,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      11,
+      5,
+      0,
+      8,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      12,
+      2,
+      0,
+      9,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      13,
+      5,
+      0,
+      9,
+      1,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      14,
+      9,
+      0,
+      10,
+      0,
+      "SEETHROUGH_PARTS"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6,
+      "offset": [
+        80,
+        430
+      ]
+    }
+  },
+  "version": 0.4
+}
