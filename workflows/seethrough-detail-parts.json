@@ -1,0 +1,738 @@
+{
+  "id": "seethrough-detail-parts-workflow",
+  "revision": 1,
+  "last_node_id": 36,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 20,
+      "type": "SeeThrough_PostProcess",
+      "pos": [
+        1140,
+        0
+      ],
+      "size": [
+        270.375,
+        151.140625
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "layers_depth",
+          "type": "SEETHROUGH_LAYERS_DEPTH",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_PostProcess"
+      },
+      "widgets_values": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": 21,
+      "type": "SeeThrough_SavePSD",
+      "pos": [
+        2660,
+        0
+      ],
+      "size": [
+        270,
+        163.140625
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "info_file",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_SavePSD"
+      },
+      "widgets_values": [
+        "seethrough_detail",
+        "Download PSD",
+        "Download Depth PSD"
+      ],
+      "title": "⑥ PSD保存 → Download PSD"
+    },
+    {
+      "id": 22,
+      "type": "PreviewImage",
+      "pos": [
+        1520,
+        420
+      ],
+      "size": [
+        360,
+        360
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "title": "自動細分化プレビュー（任意補正前）"
+    },
+    {
+      "id": 23,
+      "type": "SeeThrough_GenerateDepth",
+      "pos": [
+        760,
+        0
+      ],
+      "size": [
+        352.0625,
+        177.75
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "layers",
+          "type": "SEETHROUGH_LAYERS",
+          "link": 3
+        },
+        {
+          "name": "depth_model",
+          "type": "SEETHROUGH_DEPTH_MODEL",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "layers_depth",
+          "type": "SEETHROUGH_LAYERS_DEPTH",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_GenerateDepth"
+      },
+      "widgets_values": [
+        43,
+        "fixed",
+        -1
+      ]
+    },
+    {
+      "id": 24,
+      "type": "SeeThrough_GenerateLayers",
+      "pos": [
+        380,
+        0
+      ],
+      "size": [
+        292.625,
+        191.140625
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1
+        },
+        {
+          "name": "layerdiff_model",
+          "type": "SEETHROUGH_LAYERDIFF_MODEL",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "layers",
+          "type": "SEETHROUGH_LAYERS",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_GenerateLayers"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        768,
+        30
+      ],
+      "title": "② レイヤー生成（768px / 30 steps）"
+    },
+    {
+      "id": 27,
+      "type": "LoadImage",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        282.75,
+        339.140625
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "",
+        "image"
+      ],
+      "title": "① 入力画像を選択"
+    },
+    {
+      "id": 28,
+      "type": "SeeThrough_LoadLayerDiffModel",
+      "pos": [
+        0,
+        460
+      ],
+      "size": [
+        325.9375,
+        296.453125
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "layerdiff_model",
+          "type": "SEETHROUGH_LAYERDIFF_MODEL",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_LoadLayerDiffModel"
+      },
+      "widgets_values": [
+        "layerdifforg/seethroughv0.0.2_layerdiff3d",
+        "",
+        "",
+        "none",
+        true,
+        false,
+        true
+      ]
+    },
+    {
+      "id": 29,
+      "type": "SeeThrough_LoadDepthModel",
+      "pos": [
+        380,
+        460
+      ],
+      "size": [
+        305.5,
+        224.453125
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "depth_model",
+          "type": "SEETHROUGH_DEPTH_MODEL",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_LoadDepthModel"
+      },
+      "widgets_values": [
+        "layerdifforg/seethroughv0.0.1_marigold",
+        "none",
+        true,
+        false,
+        true
+      ]
+    },
+    {
+      "id": 30,
+      "type": "SeeThrough_RefineDetails",
+      "title": "③ 髪束・目／髪ハイライト・装飾を細分化",
+      "pos": [
+        1520,
+        0
+      ],
+      "size": [
+        360,
+        290
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": [
+            12
+          ]
+        },
+        {
+          "name": "part_names_and_report",
+          "type": "STRING",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_RefineDetails"
+      },
+      "widgets_values": [
+        true,
+        true,
+        true,
+        true,
+        8,
+        0.08,
+        16
+      ]
+    },
+    {
+      "id": 31,
+      "type": "SeeThrough_ExtractDetailMask",
+      "title": "④ 任意：鼻・髪束・装飾のマスク補正（初期バイパス）",
+      "pos": [
+        1900,
+        0
+      ],
+      "size": [
+        360,
+        220
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 7
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "part_names_and_report",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_ExtractDetailMask"
+      },
+      "widgets_values": [
+        "face",
+        "nose_detail",
+        0.5
+      ]
+    },
+    {
+      "id": 32,
+      "type": "SeeThrough_EditDetail",
+      "title": "⑤ 任意：パーツの明るさ・彩度（初期バイパス）",
+      "pos": [
+        2280,
+        0
+      ],
+      "size": [
+        350,
+        210
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parts",
+          "type": "SEETHROUGH_PARTS",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "preview",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SeeThrough_EditDetail"
+      },
+      "widgets_values": [
+        "irides-l_highlight_01",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 33,
+      "type": "PreviewAny",
+      "title": "パーツ名一覧・検出レポート",
+      "pos": [
+        2280,
+        410
+      ],
+      "size": [
+        520,
+        420
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 34,
+      "type": "LoadImage",
+      "title": "任意：768×768のマスク画像を選択",
+      "pos": [
+        1900,
+        410
+      ],
+      "size": [
+        320,
+        300
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "",
+        "image"
+      ]
+    },
+    {
+      "id": 35,
+      "type": "ImageToMask",
+      "title": "マスク画像の白い部分を抽出",
+      "pos": [
+        1900,
+        790
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageToMask"
+      },
+      "widgets_values": [
+        "red"
+      ]
+    },
+    {
+      "id": 36,
+      "type": "Note",
+      "title": "使い方・確認事項",
+      "pos": [
+        0,
+        850
+      ],
+      "size": [
+        710,
+        420
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "【基本】ComfyUIを再起動してこのJSONを読み込み、①で画像を選択して実行。⑥のDownload PSDで保存。\n\n【任意補正】④⑤はバイパス中（紫色）。必要なノードを右クリック→Bypassを解除（Ctrl+B）する。\n④: 出力キャンバスと同じ768×768の白黒マスクを別途用意。白が切り出し対象。source_partは一覧の正確な名前、新しい名前は未使用の英数字・_・-で指定。鼻が既にある場合はnose_detailなどを使う。画像のパディング位置も合わせる。\n⑤: 一覧に存在するパーツ名を指定して明るさ・彩度を調整。未検出の名前は指定しない。\n\nプレビューと一覧は③の自動細分化結果。④⑤の結果も見たい場合は、それぞれのpreviewをPreview Imageへ接続。④のpart_names_and_reportをPreview as Textへ接続すると補正後の一覧を表示できる。\n\n【精度】自動候補は完全認識ではない。白髪・白目・つながった髪束・髪に融合した装飾はマスクで補正。切り出し後の下地補完は含まない。\n\nモデル設定は既存ワークフローを継承。初期設定は768px / 30steps。動作確認を急ぐ場合は15stepsに下げる。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      27,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      28,
+      0,
+      24,
+      1,
+      "SEETHROUGH_LAYERDIFF_MODEL"
+    ],
+    [
+      3,
+      24,
+      0,
+      23,
+      0,
+      "SEETHROUGH_LAYERS"
+    ],
+    [
+      4,
+      29,
+      0,
+      23,
+      1,
+      "SEETHROUGH_DEPTH_MODEL"
+    ],
+    [
+      5,
+      23,
+      0,
+      20,
+      0,
+      "SEETHROUGH_LAYERS_DEPTH"
+    ],
+    [
+      6,
+      20,
+      0,
+      30,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      7,
+      30,
+      0,
+      31,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      8,
+      34,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      9,
+      35,
+      0,
+      31,
+      1,
+      "MASK"
+    ],
+    [
+      10,
+      31,
+      0,
+      32,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      11,
+      32,
+      0,
+      21,
+      0,
+      "SEETHROUGH_PARTS"
+    ],
+    [
+      12,
+      30,
+      1,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      30,
+      2,
+      33,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.65,
+      "offset": [
+        50,
+        50
+      ]
+    },
+    "frontendVersion": "1.44.5"
+  },
+  "version": 0.4
+}
