@@ -1,0 +1,278 @@
+{
+  "operation": "author_axis",
+  "request": {
+    "state": "REPLACE_WITH_CURRENT_WORKSPACE_STATE",
+    "project_id": "REPLACE_WITH_CURRENT_PROJECT_ID",
+    "request_id": "REPLACE_WITH_UNIQUE_REQUEST_ID",
+    "summary": "既存の振り子で曲がる毛先の幅を補強する汎用例",
+    "parameter": {
+      "id": "ParamHairBack"
+    },
+    "shapes": [
+      {
+        "target": "mesh:ArtMeshBackHair",
+        "value": -1,
+        "key": {
+          "ParamHairGravityZ": -30
+        },
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "arc",
+            "degrees": 12,
+            "root": [
+              0.5,
+              0.1
+            ],
+            "tip": [
+              0.5,
+              1
+            ],
+            "root_pin": 0.2
+          },
+          {
+            "type": "scale",
+            "factors": [
+              2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      },
+      {
+        "target": "mesh:ArtMeshBackHair",
+        "value": 1,
+        "key": {
+          "ParamHairGravityZ": -30
+        },
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "arc",
+            "degrees": -12,
+            "root": [
+              0.5,
+              0.1
+            ],
+            "tip": [
+              0.5,
+              1
+            ],
+            "root_pin": 0.2
+          },
+          {
+            "type": "scale",
+            "factors": [
+              2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      },
+      {
+        "target": "mesh:ArtMeshBackHair",
+        "value": -1,
+        "key": {
+          "ParamHairGravityZ": 0
+        },
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "arc",
+            "degrees": 12,
+            "root": [
+              0.5,
+              0.1
+            ],
+            "tip": [
+              0.5,
+              1
+            ],
+            "root_pin": 0.2
+          },
+          {
+            "type": "scale",
+            "factors": [
+              2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      },
+      {
+        "target": "mesh:ArtMeshBackHair",
+        "value": 1,
+        "key": {
+          "ParamHairGravityZ": 0
+        },
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "arc",
+            "degrees": -12,
+            "root": [
+              0.5,
+              0.1
+            ],
+            "tip": [
+              0.5,
+              1
+            ],
+            "root_pin": 0.2
+          },
+          {
+            "type": "scale",
+            "factors": [
+              2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      },
+      {
+        "target": "mesh:ArtMeshBackHair",
+        "value": -1,
+        "key": {
+          "ParamHairGravityZ": 30
+        },
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "arc",
+            "degrees": 12,
+            "root": [
+              0.5,
+              0.1
+            ],
+            "tip": [
+              0.5,
+              1
+            ],
+            "root_pin": 0.2
+          },
+          {
+            "type": "scale",
+            "factors": [
+              2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      },
+      {
+        "target": "mesh:ArtMeshBackHair",
+        "value": 1,
+        "key": {
+          "ParamHairGravityZ": 30
+        },
+        "operations": [
+          {
+            "type": "scale",
+            "factors": [
+              0.5,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          },
+          {
+            "type": "arc",
+            "degrees": -12,
+            "root": [
+              0.5,
+              0.1
+            ],
+            "tip": [
+              0.5,
+              1
+            ],
+            "root_pin": 0.2
+          },
+          {
+            "type": "scale",
+            "factors": [
+              2,
+              1
+            ],
+            "pivot": [
+              0.5,
+              0.1
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
